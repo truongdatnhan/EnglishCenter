@@ -8,9 +8,9 @@ namespace Domain.Entities
 {
     public class DanhSachDangKy
     {
-        public ICollection<ThiSinh> ThiSinhs { get; set; }
-        public string SBD { get; set; }
-        public ICollection<KhoaThi> KhoaThis { get; set; }
+        public KhoaThi KhoaThi { get; set; }
         public string MaKT { get; set; }
+        public ThiSinh ThiSinh { get; set; }
+        public string SBD { get; set; }
     }
 }

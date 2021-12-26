@@ -1,0 +1,59 @@
+@{ ViewData["Title"] = "Thống kê";
+
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Thống kê</h6>
+    </div>
+    <div class="card-body">
+        <form class="row justify-content-md-center">
+            <div class="col-md-4">
+                <label class="form-label">Trình độ</label>
+                <div class="input-group">
+                    <select class="form-select" id="selectCategroy">
+                        <option value="0">Chọn đi</option>
+                        <option value="1">1</option>
+                    </select>
+                    <button class="btn btn-dark" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="card">
+                <div class="card-header">Sơ đồ</div>
+                <div class="card-body">
+                    <canvas id="bar"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/Chart.js/chart.min.js"></script>
+    <script type="text/javascript">
+        var dataChart = [100, 200, 300];
+        var chart = document.getElementById('bar').getContext('2d');
+        var myChart = new Chart(chart, {
+            type: 'bar',
+            data: {
+                labels: ['A1', 'A2', 'B1'],
+                datasets: [{
+                    label: 'Bar chart',
+                    data: dataChart,
+                    backgroundcolor: 'rgba(6,128,250)',
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+}

@@ -1,0 +1,85 @@
+@{ ViewData["Title"] = "Danh sách thí sinh";
+
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Danh sách thí sinh</h6>
+    </div>
+    <div class="card-body">
+        <form class="row">
+            <div class="col-md-4 form-group">
+                <label class="form-label">Khoa thi</label>
+                <select class="form-select" id="selectCategroy">
+                    <option value="0">Chọn đi</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div class="col-md-4 form-group">
+                <label class="form-label">Phòng thi</label>
+                <select class="form-select" id="selectRoom">
+                </select>
+            </div>
+            <div class="col-md-4 form-group">
+                <label class="form-label">Tên</label>
+                <div class="input-group">
+                    <input class="form-control" type="text" />
+                    <button class="btn btn-dark" type="submit">Tìm kiếm</button>
+                </div>
+            </div>
+        </form>
+        <div class="table-responsive">
+            <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Tên</th>
+                        <th>CMND</th>
+                        <th>SDT</th>
+                        <th>Ngày sinh</th>
+                        <th>Địa chỉ</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hồ Cẩm Đào </td>
+                        <td>264666222</td>
+                        <td>0913555555</td>
+                        <td>03/1/2000</td>
+                        <td>521 Thống Trị</td>
+                        <td>Thông tin</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+        $(document).on("change", "#selectCategroy", function () {
+            var subCat = this;
+            $.ajax({
+                url: "ReturnJsonList/?categoryId=" + $(subCat).val(),
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                datatype: JSON,
+                success: function (result) {
+                    var categories = "";
+                    $(result).each(function () {
+                        categories = categories + '<option value="' + this + '">' + this + '</option>'
+                    });
+
+                    var subCateList = $("#selectRoom");
+                    subCateList.empty();
+                    subCateList.append(categories);
+                },
+                error: function (data) {
+                    return "Error";
+                }
+            });
+        });
+    });
+    </script>
+}

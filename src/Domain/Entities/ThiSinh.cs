@@ -22,5 +22,6 @@ namespace Domain.Entities
         public TrinhDo TrinhDo { get; set; }
         public string TenTrinhDo { get; set; }
         public ICollection<KhoaThi> KhoaThis { get; set; }
+        public ICollection<DanhSachDangKy> DanhSachDangKi { get; set; }
     }
 }

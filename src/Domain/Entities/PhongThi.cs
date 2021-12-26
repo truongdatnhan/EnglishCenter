@@ -8,12 +8,11 @@ namespace Domain.Entities
 {
     public class PhongThi
     {
-        public string MaPhong { get; set; }
+        public string MaPhongThi { get; set; }
         public string TenPhong { get; set; }
-        public int SoLuong { get; set; }
-        public TrinhDo TrinhDo { get; set; }
-        public string TenTrinhDo { get; set; }
+        public string TrinhDo { get; set; }
+        public string MaPhongThiTheoYCNV { get; set; }
         public KhoaThi KhoaThi { get; set; }
-        public string MaKT { get; set; }
+        public string MaKhoaThi { get; set; }
     }
 }

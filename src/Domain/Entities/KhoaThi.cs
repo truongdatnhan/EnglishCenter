@@ -8,9 +8,8 @@ namespace Domain.Entities
 {
     public class KhoaThi
     {
-        public string MaKT { get; set; }
-        public string TenKhoa { get; set; }
+        public string MaKhoaThi { get; set; }
+        public string Ten { get; set; }
         public DateTime NgayThi { get; set; }
-        public ICollection<ThiSinh> ThiSinhs { get; set; }
     }
 }
