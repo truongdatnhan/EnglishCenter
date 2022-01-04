@@ -12,9 +12,9 @@ namespace Domain.Entities
         public string SBD { get; set; }
         public PhongThi PhongThi { get; set; }
         public string MaPhongThi { get; set; }
-        public int Nghe { get; set; }
-        public int Noi { get; set; }
-        public int Doc { get; set; }
-        public int Viet { get; set; }
+        public int? Nghe { get; set; }
+        public int? Noi { get; set; }
+        public int? Doc { get; set; }
+        public int? Viet { get; set; }
     }
 }

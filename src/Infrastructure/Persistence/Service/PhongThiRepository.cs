@@ -3,7 +3,7 @@ using Domain.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Infrastructure.Persistence.Service
 {
     public class PhongThiRepository : EFRepository<PhongThi>, IPhongThiRepository
     {

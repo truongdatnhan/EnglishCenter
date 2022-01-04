@@ -7,6 +7,6 @@ namespace Domain.Interfaces
 {
     public interface IThiSinhRepository:IEFRepository<ThiSinh>
     {
-        
+        public ThiSinh Find(string sdt, string hoTen);
     }
 }

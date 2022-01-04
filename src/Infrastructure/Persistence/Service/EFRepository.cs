@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence.Repositories
+namespace Infrastructure.Persistence.Service
 {
     public class EFRepository<T> : IEFRepository<T> where T : class
     {

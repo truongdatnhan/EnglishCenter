@@ -2,7 +2,7 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.Persistence
+namespace Infrastructure.Persistence.Config
 {
     public class TrinhDoConfiguration : IEntityTypeConfiguration<TrinhDo>
     {

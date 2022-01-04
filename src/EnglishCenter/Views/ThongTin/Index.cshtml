@@ -1,15 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Trang chủ";
+    ViewData["Title"] = "Thông tin";
 }
-<!-- Page Content -->
-<!--xin chao-->
-<form class="row justify-content-md-center">
+
+<form method="POST" class="row justify-content-md-center">
     <div class="col-md-4">
-        <label class="form-label">Trình độ</label>
+        <label class="form-label">CMND</label>
         <div class="input-group">
-            <input class="form-control" type="text" placeholder="Nhập SDT hoặc CMND"/>
+            <input class="form-control" id="SDT" name="SDT" type="text" placeholder="Nhập SDT" />
+            <input class="form-control" id="HoTen" name="HoTen" type="text" placeholder="Nhập tên" />
             <button class="btn btn-dark" type="submit">Tìm kiếm</button>
         </div>
     </div>
 </form>
-<!-- /.container -->

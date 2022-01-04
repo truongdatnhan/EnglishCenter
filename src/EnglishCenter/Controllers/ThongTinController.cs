@@ -12,10 +12,15 @@ namespace EnglishCenter.Controllers
     public class ThongTinController : Controller
     {
         private readonly IThiSinhRepository thiSinhRepository;
+        private readonly ISoBaoDanhRepository soBaoDanhRepository;
+        private readonly IThamGiaDuThiRepository thamGiaDuThiRepository;
 
-        public ThongTinController(IThiSinhRepository thiSinhRepository)
+        public ThongTinController(IThiSinhRepository thiSinhRepository, ISoBaoDanhRepository soBaoDanhRepository,
+            IThamGiaDuThiRepository thamGiaDuThiRepository)
         {
             this.thiSinhRepository = thiSinhRepository;
+            this.soBaoDanhRepository = soBaoDanhRepository;
+            this.thamGiaDuThiRepository = thamGiaDuThiRepository;
         }
 
         public IActionResult Index()
@@ -24,14 +29,26 @@ namespace EnglishCenter.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Index(DangKyViewModel vm)
+        public IActionResult Index(string sdt, string hoTen)
         {
-            if (ModelState.IsValid)
+            if (sdt != null || hoTen != null)
             {
-                thiSinhRepository.Add(vm.ThiSinh);
-                ViewBag.Message = "Đăng ký thành công !";
-                return View();
+                var ts = thiSinhRepository.Find(sdt,hoTen);
+                if(ts == null)
+                {
+                    ViewBag.Message = "Không tồn tại !";
+                    return RedirectToAction("Index");
+                }
+                var sbd = soBaoDanhRepository.Find(ts.CMND);
+                var diem = thamGiaDuThiRepository.GetAll().Where(x => x.SBD == sbd.SBD).FirstOrDefault();
+                ThongTinViewModel viewModel = new ThongTinViewModel()
+                {
+                    ThiSinh = ts,
+                    SoBaoDanh = sbd,
+                    ThamGiaDuThi = diem
+                };
+
+                return View("ThongTin",viewModel);
             }
             return RedirectToAction("Index");
         }
