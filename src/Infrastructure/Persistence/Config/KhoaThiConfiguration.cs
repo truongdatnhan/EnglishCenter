@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace Infrastructure.Persistence.Config
 {
@@ -10,6 +11,7 @@ namespace Infrastructure.Persistence.Config
         {
             builder.ToTable("KhoaThi");
             builder.HasKey(kt => kt.MaKhoaThi);
+            builder.HasData(new KhoaThi { MaKhoaThi = "KT2251", TenKhoaThi = "KT2251", NgayThi = new DateTime(2022, 01, 05) });
         }
     }
 }

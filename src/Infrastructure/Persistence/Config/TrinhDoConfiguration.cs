@@ -10,6 +10,10 @@ namespace Infrastructure.Persistence.Config
         {
             builder.ToTable("TrinhDo");
             builder.HasKey(td => td.TenTrinhDo);
+            builder.HasData(
+                new TrinhDo { MaTrinhDo ="A2",TenTrinhDo = "A2" },
+                new TrinhDo { MaTrinhDo = "B1", TenTrinhDo = "B1" }
+                );
         }
     }
 }

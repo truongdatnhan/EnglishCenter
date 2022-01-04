@@ -9,7 +9,7 @@ namespace Domain.Entities
 {
     public class GiaoVien
     {
-        public string MaGV { get; set; }
+        public int MaGV { get; set; }
         public string HoTen { get; set; }
         public Gender GioiTinh { get; set; }
         public DateTime NgaySinh { get; set; }

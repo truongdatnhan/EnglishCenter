@@ -8,5 +8,6 @@ namespace Domain.Interfaces
     public interface ISoBaoDanhRepository : IEFRepository<SoBaoDanh>
     {
         public SoBaoDanh Find(string CMND);
+        public SoBaoDanh GetByEager(string SBD);
     }
 }

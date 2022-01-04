@@ -44,6 +44,12 @@ namespace EnglishCenter
 
             //ThamGiaDuThi
             services.AddScoped<IThamGiaDuThiRepository, ThamGiaDuThiRepository>();
+
+            //KhoaThi
+            services.AddScoped<IKhoaThiRepository, KhoaThiRepository>();
+
+            //PhongThi
+            services.AddScoped<IPhongThiRepository, PhongThiRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

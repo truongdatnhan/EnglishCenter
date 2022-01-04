@@ -22,17 +22,7 @@ namespace EnglishCenter.Controllers
             return View();
         }
 
-        public IActionResult ThongTin()
-        {
-            return View();
-        }
-
         public IActionResult ChungNhan()
-        {
-            return View();
-        }
-
-        public IActionResult DanhSach()
         {
             return View();
         }
@@ -42,14 +32,7 @@ namespace EnglishCenter.Controllers
             return View();
         }
 
-        public JsonResult ReturnJsonList(int categoryId)
-        {
-            List<string> test = new();
-            test.Add("123");
-            test.Add("222");
-            //var jsonData = test;
-            return Json(test);
-        }
+        
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

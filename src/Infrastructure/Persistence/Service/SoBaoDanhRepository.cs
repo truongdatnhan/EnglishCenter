@@ -1,5 +1,6 @@
 ﻿using Domain.Entities;
 using Domain.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,6 +18,12 @@ namespace Infrastructure.Persistence.Service
             if (sbd != null)
                 return sbd;
             return null;
+        }
+
+        public SoBaoDanh GetByEager(string SBD)
+        {
+            var sbd = context.SoBaoDanhs.Include(x => x.ThiSinh).Where(x => x.SBD.Equals(SBD)).FirstOrDefault();
+            return sbd;
         }
     }
 }

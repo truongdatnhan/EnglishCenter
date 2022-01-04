@@ -1,3 +1,5 @@
+@model DanhSachViewModel
+
 @{ ViewData["Title"] = "Danh sách thí sinh";
 
 }
@@ -7,23 +9,20 @@
         <h6 class="m-0 font-weight-bold text-primary">Danh sách thí sinh</h6>
     </div>
     <div class="card-body">
-        <form class="row">
+        <form method="POST" class="row">
             <div class="col-md-4 form-group">
                 <label class="form-label">Khoa thi</label>
-                <select class="form-select" id="selectCategroy">
-                    <option value="0">Chọn đi</option>
-                    <option value="1">1</option>
+                <select class="form-select" id="khoaThi" name="khoaThi" asp-items="@(new SelectList(ViewBag.KhoaThi, "MaKhoaThi", "TenKhoaThi"))">
+                    <option selected="selected" value="">-- Chọn khoá thi --</option>
                 </select>
             </div>
             <div class="col-md-4 form-group">
                 <label class="form-label">Phòng thi</label>
-                <select class="form-select" id="selectRoom">
+                <select class="form-select" id="phongThi" name="phongThi">
                 </select>
             </div>
             <div class="col-md-4 form-group">
-                <label class="form-label">Tên</label>
                 <div class="input-group">
-                    <input class="form-control" type="text" />
                     <button class="btn btn-dark" type="submit">Tìm kiếm</button>
                 </div>
             </div>
@@ -32,23 +31,34 @@
             <table class="table table-striped" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>Tên</th>
+                        <th>SBD</th>
                         <th>CMND</th>
-                        <th>SDT</th>
+                        <th>Họ tên</th>
+                        <th>Giới tính</th>
                         <th>Ngày sinh</th>
-                        <th>Địa chỉ</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Hồ Cẩm Đào </td>
-                        <td>264666222</td>
-                        <td>0913555555</td>
-                        <td>03/1/2000</td>
-                        <td>521 Thống Trị</td>
-                        <td>Thông tin</td>
-                    </tr>
+                    @{
+                        if (Model.SBDs != null)
+                        {
+                            foreach (var sbd in Model.SBDs)
+                            {
+                                <tr>
+                                    <td>@sbd.SBD </td>
+                                    <td>@sbd.CMND </td>
+                                    <td>@sbd.ThiSinh.HoTen</td>
+                                    <td>@sbd.ThiSinh.GioiTinh</td>
+                                    <td>@sbd.ThiSinh.NgaySinh</td>
+                                    <td>
+                                        <a class="btn btn-success" asp-action="ThongTin" asp-controller="ThongTin" asp-route-sdt="@sbd.ThiSinh.SDT" asp-route-hoten="@sbd.ThiSinh.HoTen"><i class="fas fa-users"></i></a>
+                                        <a class="btn btn-success"><i class="fas fa-dollar-sign"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
                 </tbody>
             </table>
         </div>
@@ -58,20 +68,20 @@
 @section Scripts {
     <script>
     $(document).ready(function () {
-        $(document).on("change", "#selectCategroy", function () {
+        $(document).on("change", "#khoaThi", function () {
             var subCat = this;
             $.ajax({
-                url: "ReturnJsonList/?categoryId=" + $(subCat).val(),
+                url: "DanhSach/ReturnJsonList/?khoaThi=" + $(subCat).val(),
                 type: "GET",
                 contentType: "application/json; charset=utf-8",
                 datatype: JSON,
                 success: function (result) {
                     var categories = "";
-                    $(result).each(function () {
-                        categories = categories + '<option value="' + this + '">' + this + '</option>'
+                    $(result).each(function (k,v) {
+                        categories = categories + '<option value="' + v["maPhongThi"] + '">' + v["tenPhong"] + '</option>'
                     });
 
-                    var subCateList = $("#selectRoom");
+                    var subCateList = $("#phongThi");
                     subCateList.empty();
                     subCateList.append(categories);
                 },

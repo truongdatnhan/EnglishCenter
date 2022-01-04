@@ -1,6 +1,8 @@
 ﻿using Domain.Entities;
+using Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 
 namespace Infrastructure.Persistence.Config
 {
@@ -12,6 +14,9 @@ namespace Infrastructure.Persistence.Config
             builder.HasKey(ts => ts.CMND);
             //One-to-one SBD
             builder.HasOne(ts => ts.SBD).WithOne(sbd => sbd.ThiSinh).HasForeignKey<SoBaoDanh>(ts => ts.CMND);
+            builder.HasData(new ThiSinh { CMND = "231852123", HoTen = "Trương Đạt Nhân", GioiTinh = Gender.MALE,NgaySinh= new DateTime(2000, 11, 03),
+            Email = "truongdatnhan@gmail.com",NoiSinh = "Ninh Thuận",NoiCap = "Ninh Thuận",NgayCap = new DateTime(2016,12,22)}
+                );
             /*//Many-to-many with Khoá thi
             builder.HasMany(ts => ts.KhoaThis).WithMany(kt => kt.ThiSinhs).UsingEntity<DanhSachDangKy>(
                     e => e.HasOne<KhoaThi>().WithMany().HasForeignKey(e => e.MaKT),

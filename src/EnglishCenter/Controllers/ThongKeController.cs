@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace EnglishCenter.Controllers
 {
-    public class ThongTinController : Controller
+    public class ThongKeController : Controller
     {
         private readonly IThiSinhRepository thiSinhRepository;
         private readonly ISoBaoDanhRepository soBaoDanhRepository;
         private readonly IThamGiaDuThiRepository thamGiaDuThiRepository;
 
-        public ThongTinController(IThiSinhRepository thiSinhRepository, ISoBaoDanhRepository soBaoDanhRepository,
+        public ThongKeController(IThiSinhRepository thiSinhRepository, ISoBaoDanhRepository soBaoDanhRepository,
             IThamGiaDuThiRepository thamGiaDuThiRepository)
         {
             this.thiSinhRepository = thiSinhRepository;
@@ -28,7 +28,8 @@ namespace EnglishCenter.Controllers
             return View();
         }
 
-        public IActionResult ThongTin(string sdt, string hoTen)
+        [HttpPost]
+        public IActionResult Index(string sdt, string hoTen)
         {
             if (sdt != null || hoTen != null)
             {
