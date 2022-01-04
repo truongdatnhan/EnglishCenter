@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class BaiThi
+    public class CanhThi
     {
-        public string MaBaiThi { get; set; }
+        public GiaoVien GiaoVien { get; set; }
+        public string MaGV { get; set; }
         public PhongThi PhongThi { get; set; }
-        public string MaPhong { get; set; }
+        public string MaPhongThi { get; set; }
     }
 }

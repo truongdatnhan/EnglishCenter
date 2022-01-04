@@ -1,0 +1,80 @@
+﻿@using Domain.Enum
+@model DangKyViewModel
+
+@{
+    ViewData["Title"] = "Đăng ký";
+}
+
+<div class="container">
+    @{
+        if (ViewBag.Message != null)
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <span class="text-success">@ViewBag.Message</span>
+                </div>
+            </div>
+            <hr/>
+        }
+    }
+    <h3 class="display-4">Đăng ký</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Index" asp-controller="DangKy">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.Email" class="control-label"></label>
+                    <input asp-for="ThiSinh.Email" class="form-control" />
+                    <span asp-validation-for="ThiSinh.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.SDT" class="control-label"></label>
+                    <input asp-for="ThiSinh.SDT" class="form-control" />
+                    <span asp-validation-for="ThiSinh.SDT" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.CMND" class="control-label"></label>
+                    <input asp-for="ThiSinh.CMND" class="form-control" />
+                    <span asp-validation-for="ThiSinh.CMND" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.HoTen" class="control-label"></label>
+                    <input asp-for="ThiSinh.HoTen" class="form-control" />
+                    <span asp-validation-for="ThiSinh.HoTen" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.NgaySinh" class="control-label"></label>
+                    <input asp-for="ThiSinh.NgaySinh" class="form-control" />
+                    <span asp-validation-for="ThiSinh.NgaySinh" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.GioiTinh" class="control-label"></label>
+                    <select asp-for="ThiSinh.GioiTinh" class="form-control" asp-items="Html.GetEnumSelectList<Gender>()"></select>
+                    <span asp-validation-for="ThiSinh.GioiTinh" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.NoiSinh" class="control-label"></label>
+                    <input asp-for="ThiSinh.NoiSinh" class="form-control" />
+                    <span asp-validation-for="ThiSinh.NoiSinh" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.NoiCap" class="control-label"></label>
+                    <input asp-for="ThiSinh.NoiCap" class="form-control" />
+                    <span asp-validation-for="ThiSinh.NoiCap" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ThiSinh.NgayCap" class="control-label"></label>
+                    <input asp-for="ThiSinh.NgayCap" class="form-control" />
+                    <span asp-validation-for="ThiSinh.NgayCap" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Đăng ký</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <img src="~/img/signup.png" class="img-fluid" />
+        </div>
+    </div>
+</div>

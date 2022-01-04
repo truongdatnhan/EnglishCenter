@@ -1,12 +1,17 @@
+using Domain.Interfaces;
+using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace EnglishCenter
@@ -24,6 +29,15 @@ namespace EnglishCenter
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContextPool<CenterContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("EnglishCenterDB")));
+
+            //EF
+            services.AddScoped(typeof(IEFRepository<>), typeof(EFRepository<>));
+
+
+            //ThiSInh
+            services.AddScoped<IThiSinhRepository, ThiSinhRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

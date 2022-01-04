@@ -13,25 +13,25 @@ namespace Infrastructure.Persistence
             /*var dir = Directory.GetParent(Directory.GetCurrentDirectory());
             do
                 dir = dir.Parent;
-            while (dir.Name != "bin");
+            while (dir.Name != "EnglishCenter");
             dir = dir.Parent;
             var path = dir.FullName;
             
             IConfigurationRoot configuration = new ConfigurationBuilder()
-            .SetBasePath(path)
+            .SetBasePath(path+"\\EnglishCenter")
             .AddJsonFile("appsettings.json")
             .Build();
-             
              */
+             
 
-            IConfigurationRoot configuration = new ConfigurationBuilder()
+            /*IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json")
-            .Build();
+            .Build();*/
 
-            var connectionString = configuration.GetConnectionString("TourDB");
+            //var connectionString = configuration.GetConnectionString("TourDB");
             var optionsBuilder = new DbContextOptionsBuilder<CenterContext>();
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=EnglishCenterDB;Trusted_Connection=True;");
 
             return new CenterContext(optionsBuilder.Options);
         }

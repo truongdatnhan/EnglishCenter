@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Enum;
+﻿using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,8 @@ namespace Domain.Entities
 {
     public class ThiSinh
     {
-        public string SBD { get; set; }
-        public string HoTen { get; set; }
         public string CMND { get; set; }
+        public string HoTen { get; set; }
         public string NoiSinh { get; set; }
         public Gender GioiTinh { get; set; }
         public DateTime NgaySinh { get; set; }
@@ -19,9 +18,6 @@ namespace Domain.Entities
         public string NoiCap { get; set; }
         public DateTime NgayCap { get; set; }
         public string Email { get; set; }
-        public TrinhDo TrinhDo { get; set; }
-        public string TenTrinhDo { get; set; }
-        public ICollection<KhoaThi> KhoaThis { get; set; }
-        public ICollection<DanhSachDangKy> DanhSachDangKi { get; set; }
+        public SoBaoDanh SBD { get; set; }
     }
 }

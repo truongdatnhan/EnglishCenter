@@ -10,7 +10,6 @@ namespace Infrastructure.Persistence
         {
             builder.ToTable("TrinhDo");
             builder.HasKey(td => td.TenTrinhDo);
-
         }
     }
 }

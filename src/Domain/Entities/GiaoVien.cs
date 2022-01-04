@@ -1,4 +1,4 @@
-﻿using Domain.Entities.Enum;
+﻿using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +15,7 @@ namespace Domain.Entities
         public DateTime NgaySinh { get; set; }
         public string Email { get; set; }
         public string SDT { get; set; }
+        public ICollection<PhongThi> PhongThis { get; set; }
+        public ICollection<CanhThi> CanhThis { get; set; }
     }
 }
