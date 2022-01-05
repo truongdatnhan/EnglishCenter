@@ -7,23 +7,23 @@
         <h6 class="m-0 font-weight-bold text-primary">Thống kê</h6>
     </div>
     <div class="card-body">
-        <form class="row justify-content-md-center">
-            <div class="col-md-4">
-                <label class="form-label">Trình độ</label>
-                <div class="input-group">
-                    <select class="form-select" id="selectCategroy">
-                        <option value="0">Chọn đi</option>
-                        <option value="1">1</option>
-                    </select>
-                    <button class="btn btn-dark" type="submit">Tìm kiếm</button>
+        <div class="row">
+            <div class="card col-md-4">
+                <div class="card-header">Thống kê khoá thi</div>
+                <div class="card-body">
+                    <canvas id="khoaThi"></canvas>
                 </div>
             </div>
-        </form>
-        <div class="row">
-            <div class="card">
-                <div class="card-header">Sơ đồ</div>
+            <div class="card col-md-4">
+                <div class="card-header">Thống kê phòng thi</div>
                 <div class="card-body">
-                    <canvas id="bar"></canvas>
+                    <canvas id="phongThi"></canvas>
+                </div>
+            </div>
+            <div class="card col-md-4">
+                <div class="card-header">Thống kê thí sinh</div>
+                <div class="card-body">
+                    <canvas id="thiSinh"></canvas>
                 </div>
             </div>
         </div>
@@ -32,13 +32,94 @@
 
 @section Scripts {
     <script src="~/lib/Chart.js/chart.min.js"></script>
-    <script type="text/javascript">
-        var dataChart = [100, 200, 300];
-        var chart = document.getElementById('bar').getContext('2d');
+    <!--<script type="text/javascript">
+        var dataChart = [100, 200];
+        var chart = document.getElementById('khoaThi').getContext('2d');
         var myChart = new Chart(chart, {
             type: 'bar',
             data: {
-                labels: ['A1', 'A2', 'B1'],
+                labels: ['A2', 'B1'],
+                datasets: [{
+                    label: 'Bar chart',
+                    data: dataChart,
+                    backgroundcolor: 'rgba(6,128,250)',
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>-->
+    <script>
+        var chart = document.getElementById("khoaThi").getContext("2d");
+
+        var data = {
+            labels: ["Chocolate", "Vanilla", "Strawberry"],
+            datasets: [
+                {
+                    label: "A2",
+                    backgroundColor: "red",
+                    data: [4, 3, 5]
+                },
+                {
+                    label: "B1",
+                    backgroundColor: "green",
+                    data: [7, 2, 6]
+                }
+            ]
+        };
+
+        var myChart = new Chart(chart, {
+            type: 'bar',
+            data: data,
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var dataChart = [@ViewBag.PTA2, @ViewBag.PTB1];
+        var chart = document.getElementById('phongThi').getContext('2d');
+        var myChart = new Chart(chart, {
+            type: 'bar',
+            data: {
+                labels: ['A2', 'B1'],
+                datasets: [{
+                    label: 'Bar chart',
+                    data: dataChart,
+                    backgroundcolor: 'rgba(6,128,250)',
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        var dataChart = [@ViewBag.TSA2, @ViewBag.TSB1];
+        var chart = document.getElementById('thiSinh').getContext('2d');
+        var myChart = new Chart(chart, {
+            type: 'bar',
+            data: {
+                labels: ['A2', 'B1'],
                 datasets: [{
                     label: 'Bar chart',
                     data: dataChart,

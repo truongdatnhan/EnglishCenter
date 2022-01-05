@@ -14,17 +14,24 @@ namespace EnglishCenter.Controllers
         private readonly IThiSinhRepository thiSinhRepository;
         private readonly ISoBaoDanhRepository soBaoDanhRepository;
         private readonly IThamGiaDuThiRepository thamGiaDuThiRepository;
+        private readonly IPhongThiRepository phongThiRepository;
 
         public ThongKeController(IThiSinhRepository thiSinhRepository, ISoBaoDanhRepository soBaoDanhRepository,
-            IThamGiaDuThiRepository thamGiaDuThiRepository)
+            IThamGiaDuThiRepository thamGiaDuThiRepository,IPhongThiRepository phongThiRepository)
         {
             this.thiSinhRepository = thiSinhRepository;
             this.soBaoDanhRepository = soBaoDanhRepository;
             this.thamGiaDuThiRepository = thamGiaDuThiRepository;
+            this.phongThiRepository = phongThiRepository;
         }
 
         public IActionResult Index()
         {
+            ViewBag.TSA2 = thamGiaDuThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("A2")).Count();
+            ViewBag.TSB1 = thamGiaDuThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("B1")).Count();
+            ViewBag.PTA2 = phongThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("A2")).Count();
+            ViewBag.PTB1 = phongThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("B1")).Count();
+            
             return View();
         }
 
