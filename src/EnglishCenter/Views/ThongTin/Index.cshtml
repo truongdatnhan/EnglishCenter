@@ -3,12 +3,14 @@
 }
 
 <form method="GET" class="row justify-content-md-center" asp-controller="ThongTin" asp-action="ThongTin">
-    <div class="col-md-4">
-        <label class="form-label">CMND</label>
-        <div class="input-group">
-            <input class="form-control" id="SDT" name="SDT" type="text" placeholder="Nhập SDT" />
-            <input class="form-control" id="HoTen" name="HoTen" type="text" placeholder="Nhập tên" />
-            <button class="btn btn-dark" type="submit">Tìm kiếm</button>
+    <div style = "height : 400px; display: table;">
+        <div class="col-md-4" style="display : table-cell;  vertical-align: middle; horizontal-align: center;">
+            <label class="form-label">CMND</label>
+            <div class="input-group">
+                <input class="form-control" id="SDT" name="SDT" type="text" placeholder="Nhập SDT" style="width: 100px"/>
+                <input class="form-control" id="HoTen" name="HoTen" type="text" placeholder="Nhập tên" style="width: 100px" />
+                <button class="btn btn-dark" type="submit">Tìm kiếm</button>
+            </div>
         </div>
-    </div>
+    </div> 
 </form>
