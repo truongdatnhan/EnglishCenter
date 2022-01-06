@@ -35,6 +35,11 @@
     width: 100%;
 }
 
+body {
+    padding: 20px 0;
+    background: #ccc;
+}
+
 .pm-certificate-container {
     position: relative;
     width: 800px;
@@ -80,7 +85,7 @@
     margin-left: -365px;
     top: 50%;
     margin-top: -265px;
-    border: 2px solid #fff;
+    border: 2px solid #fff!important;
 }
 
 .pm-certificate-border {
@@ -177,5 +182,6 @@
     margin-left: -325px;
     bottom: -105px;
 }
+
 }
 }
