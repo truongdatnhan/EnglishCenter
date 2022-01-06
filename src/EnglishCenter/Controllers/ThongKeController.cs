@@ -11,16 +11,14 @@ namespace EnglishCenter.Controllers
 {
     public class ThongKeController : Controller
     {
-        private readonly IThiSinhRepository thiSinhRepository;
-        private readonly ISoBaoDanhRepository soBaoDanhRepository;
+        private readonly IKhoaThiRepository khoaThiRepository;
         private readonly IThamGiaDuThiRepository thamGiaDuThiRepository;
         private readonly IPhongThiRepository phongThiRepository;
 
-        public ThongKeController(IThiSinhRepository thiSinhRepository, ISoBaoDanhRepository soBaoDanhRepository,
+        public ThongKeController(IKhoaThiRepository khoaThiRepository,
             IThamGiaDuThiRepository thamGiaDuThiRepository,IPhongThiRepository phongThiRepository)
         {
-            this.thiSinhRepository = thiSinhRepository;
-            this.soBaoDanhRepository = soBaoDanhRepository;
+            this.khoaThiRepository = khoaThiRepository;
             this.thamGiaDuThiRepository = thamGiaDuThiRepository;
             this.phongThiRepository = phongThiRepository;
         }
@@ -31,33 +29,18 @@ namespace EnglishCenter.Controllers
             ViewBag.TSB1 = thamGiaDuThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("B1")).Count();
             ViewBag.PTA2 = phongThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("A2")).Count();
             ViewBag.PTB1 = phongThiRepository.GetAll().Where(x => x.MaPhongThi.StartsWith("B1")).Count();
-            
-            return View();
-        }
-
-        [HttpPost]
-        public IActionResult Index(string sdt, string hoTen)
-        {
-            if (sdt != null || hoTen != null)
+            var khoaThi = khoaThiRepository.GetAll().Select(x =>x.MaKhoaThi);
+            var TSA2Khoa = new List<int>();
+            var TSB1Khoa = new List<int>();
+            foreach (var item in khoaThi)
             {
-                var ts = thiSinhRepository.Find(sdt,hoTen);
-                if(ts == null)
-                {
-                    ViewBag.Message = "Không tồn tại !";
-                    return RedirectToAction("Index");
-                }
-                var sbd = soBaoDanhRepository.Find(ts.CMND);
-                var diem = thamGiaDuThiRepository.GetAll().Where(x => x.SBD == sbd.SBD).FirstOrDefault();
-                ThongTinViewModel viewModel = new ThongTinViewModel()
-                {
-                    ThiSinh = ts,
-                    SoBaoDanh = sbd,
-                    ThamGiaDuThi = diem
-                };
-
-                return View("ThongTin",viewModel);
+                TSA2Khoa.Add(khoaThiRepository.CountTSByKhoa(item, "A2"));
+                TSB1Khoa.Add(khoaThiRepository.CountTSByKhoa(item, "B1"));
             }
-            return RedirectToAction("Index");
+            ViewBag.KhoaThi = khoaThi;
+            ViewBag.TSA2Khoa = TSA2Khoa;
+            ViewBag.TSB1Khoa = TSB1Khoa;
+            return View();
         }
     }
 }

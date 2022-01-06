@@ -53,6 +53,14 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col-sm-3">
+                            <h6 class="mb-0">Số báo danh</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary">
+                            <input disabled type="text" class="form-control" value="@Model.SoBaoDanh.SBD">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-3">
                             <h6 class="mb-0">Phòng thi</h6>
                         </div>
                         <div class="col-sm-9 text-secondary">
@@ -77,19 +85,19 @@
                                     var doc = Model.ThamGiaDuThi.Doc * 10;
                                     var viet = Model.ThamGiaDuThi.Viet * 10;
                                     <h5 class="d-flex align-items-center mb-3">Điểm</h5>
-                                    <p>Nghe</p>
+                                    <p>Nghe: @Model.ThamGiaDuThi.Nghe</p>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-primary" role="progressbar" style="width: @nghe%" aria-valuenow="@nghe" aria-valuemin="0" aria-valuemax="10"></div>
                                     </div>
-                                    <p>Nói</p>
+                                    <p>Nói: @Model.ThamGiaDuThi.Noi</p>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: @noi%" aria-valuenow="@noi" aria-valuemin="0" aria-valuemax="10"></div>
                                     </div>
-                                    <p>Đọc</p>
+                                    <p>Đọc: @Model.ThamGiaDuThi.Doc</p>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-success" role="progressbar" style="width: @doc%" aria-valuenow="@doc" aria-valuemin="0" aria-valuemax="10"></div>
                                     </div>
-                                    <p>Viết</p>
+                                    <p>Viết: @Model.ThamGiaDuThi.Viet</p>
                                     <div class="progress mb-3" style="height: 5px">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: @viet%" aria-valuenow="@viet" aria-valuemin="0" aria-valuemax="10"></div>
                                     </div>
