@@ -365,3 +365,4 @@ FodyWeavers.xsd
 #Custom ignore fore Database file
 appsettings.json
 Migrations/
+launchSettings.json

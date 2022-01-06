@@ -8,16 +8,17 @@
     </div>
     <div class="card-body">
         <div class="row">
-            <div class="card col-md-4">
-                <div class="card-header">Thống kê khoá thi</div>
-                <div class="card-body">
-                    <canvas id="khoaThi"></canvas>
-                </div>
-            </div>
+
             <div class="card col-md-4">
                 <div class="card-header">Thống kê phòng thi</div>
                 <div class="card-body">
                     <canvas id="phongThi"></canvas>
+                </div>
+            </div>
+            <div class="card col-md-4">
+                <div class="card-header">Thống kê khoá thi</div>
+                <div class="card-body">
+                    <canvas id="khoaThi"></canvas>
                 </div>
             </div>
             <div class="card col-md-4">
@@ -59,18 +60,39 @@
     <script>
         var chart = document.getElementById("khoaThi").getContext("2d");
 
+        var khoaThi = [];
+        var dataA2 = [];
+        var dataB1 = [];
+
+        @{
+            foreach(var data in ViewBag.KhoaThi)
+                {
+                    @:khoaThi.push("@data");
+                }
+
+            foreach(var data in ViewBag.TSA2Khoa)
+                {
+                    @:dataA2.push(@data);
+                }
+
+            foreach(var data in ViewBag.TSB1Khoa)
+                {
+                    @:dataB1.push(@data);
+                }
+        }
+
         var data = {
-            labels: ["Chocolate", "Vanilla", "Strawberry"],
+            labels: khoaThi,
             datasets: [
                 {
                     label: "A2",
                     backgroundColor: "red",
-                    data: [4, 3, 5]
+                    data: dataA2
                 },
                 {
                     label: "B1",
                     backgroundColor: "green",
-                    data: [7, 2, 6]
+                    data: dataB1
                 }
             ]
         };
@@ -85,21 +107,23 @@
                             beginAtZero: true
                         }
                     }]
-                }
+                },
+                maintainAspectRatio: false
             }
         });
     </script>
     <script type="text/javascript">
-        var dataChart = [@ViewBag.PTA2, @ViewBag.PTB1];
+        var dataChart = [@ViewBag.PTA2,@ViewBag.PTB1];
+        var barColors = ["red", "green"];
         var chart = document.getElementById('phongThi').getContext('2d');
+
         var myChart = new Chart(chart, {
-            type: 'bar',
+            type: "pie",
             data: {
-                labels: ['A2', 'B1'],
+                labels: ["A2","B1"],
                 datasets: [{
-                    label: 'Bar chart',
-                    data: dataChart,
-                    backgroundcolor: 'rgba(6,128,250)',
+                    backgroundColor: barColors,
+                    data: dataChart
                 }]
             },
             options: {
@@ -115,15 +139,15 @@
     </script>
     <script type="text/javascript">
         var dataChart = [@ViewBag.TSA2, @ViewBag.TSB1];
+        var barColors = ["red", "green"];
         var chart = document.getElementById('thiSinh').getContext('2d');
         var myChart = new Chart(chart, {
-            type: 'bar',
+            type: 'doughnut',
             data: {
-                labels: ['A2', 'B1'],
+                labels: ["A2", "B1"],
                 datasets: [{
-                    label: 'Bar chart',
-                    data: dataChart,
-                    backgroundcolor: 'rgba(6,128,250)',
+                    backgroundColor: barColors,
+                    data: dataChart
                 }]
             },
             options: {

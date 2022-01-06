@@ -1,14 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Thông tin";
+    ViewData["Title"] = "Chứng nhận";
 }
 
-<form method="GET" class="row justify-content-md-center" asp-controller="ThongTin" asp-action="ThongTin">
+<form method="GET" class="row justify-content-md-center" asp-controller="ChungNhan" asp-action="ChungNhan">
     <div style = "height : 400px; display: table;">
         <div class="col-md-4" style="display : table-cell;  vertical-align: middle; horizontal-align: center;">
             <label class="form-label">Nhập thông tin</label>
             <div class="input-group">
-                <input class="form-control" id="SDT" name="SDT" type="text" placeholder="Nhập SDT" style="width: 100px"/>
-                <input class="form-control" id="HoTen" name="HoTen" type="text" placeholder="Nhập tên" style="width: 100px" />
+                <input class="form-control" id="sbd" name="sbd" type="text" placeholder="Nhập số báo danh" style="width: 100px"/>
                 <button class="btn btn-dark" type="submit">Tìm kiếm</button>
             </div>
         </div>
