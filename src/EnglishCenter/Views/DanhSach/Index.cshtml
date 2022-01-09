@@ -23,7 +23,7 @@
             </div>
             <div class="col-md-4 form-group">
                 <div class="input-group">
-                    <button class="btn btn-dark" type="submit">Tìm kiếm</button>
+                    <button style="margin-top:30px;" class="btn btn-dark" type="submit">Tìm kiếm</button>
                 </div>
             </div>
         </form>
@@ -52,8 +52,8 @@
                                     <td>@sbd.ThiSinh.GioiTinh</td>
                                     <td>@sbd.ThiSinh.NgaySinh</td>
                                     <td>
-                                        <a class="btn btn-success" asp-action="ThongTin" asp-controller="ThongTin" asp-route-sdt="@sbd.ThiSinh.SDT" asp-route-hoten="@sbd.ThiSinh.HoTen"><i class="fas fa-users"></i></a>
-                                        <a class="btn btn-success"><i class="fas fa-dollar-sign"></i></a>
+                                        <a class="btn btn-success" asp-action="ThongTin" asp-controller="ThongTin" asp-route-sdt="@sbd.ThiSinh.SDT" asp-route-hoten="@sbd.ThiSinh.HoTen"><i class="fas fa-id-badge"></i></a>
+                                        <a class="btn btn-success" asp-action="ChungNhan" asp-controller="ChungNhan" asp-route-sbd="@sbd.SBD"><i class="fas fa-certificate"></i></a>
                                     </td>
                                 </tr>
                             }

@@ -22,18 +22,6 @@ namespace EnglishCenter.Controllers
             return View();
         }
 
-        public IActionResult ChungNhan()
-        {
-            return View();
-        }
-
-        public IActionResult ThongKe()
-        {
-            return View();
-        }
-
-        
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
